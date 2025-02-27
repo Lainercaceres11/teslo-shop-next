@@ -1,4 +1,10 @@
+export { getOrdeByUser } from "./order/getOrderByUser";
+export { getOrdeById } from "./order/getOrderById";
+export { placeHolder } from "./order/placeOrder";
+export { getAdressInfo } from "./address/get-address-info";
+export { setUserAddress } from "./address/setAddress";
 export { registerUser } from "./auth/registerUser";
 export { getProductBySlug } from "./product/get-product-by-slug";
 export { getProductPaginationWithImage } from "./product/product-pagination";
 export { getStuckBySlug } from "./product/get-product-by-stock";
+export { deleteAddres } from "./address/deleteAddress";

@@ -9,6 +9,7 @@ interface State {
   getTotalItems: () => number;
   updateProductCart: (product: CartProduct, quantity: number) => void;
   removeProduct: (product: CartProduct) => void;
+  clearCart: () => void;
   getSummaryInformation: () => {
     subTotal: number;
     tax: number;
@@ -31,7 +32,7 @@ export const useCartStore = create<State>()(
       getSummaryInformation: () => {
         const { productCart } = get();
         const subTotal = productCart.reduce(
-          (subTotal, item) => (item.quantity * item.price) + subTotal,
+          (subTotal, item) => item.quantity * item.price + subTotal,
           0
         );
         const tax = subTotal * 0.15;
@@ -91,6 +92,9 @@ export const useCartStore = create<State>()(
             item.id !== product.id || item.size !== product.size
         );
         set({ productCart: removeProduct });
+      },
+      clearCart: () => {
+        set({ productCart: [] });
       },
     }),
 
