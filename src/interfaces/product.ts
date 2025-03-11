@@ -22,6 +22,12 @@ export interface CartProduct {
   image: string;
 }
 
+export interface ProductImages {
+  id: number;
+  url: string;
+  producId: string;
+}
+
 export type Category = "men" | "women" | "kid" | "unisex";
 export type ValidSizes = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
 export type ValidTypes = "shirts" | "pants" | "hoodies" | "hats";

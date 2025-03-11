@@ -1,3 +1,7 @@
+export { ProductImage } from "./product/product-image/ProductImage";
+
+export { PayPalStatus } from "./order/PayPalStatus";
+export { PayPalButton } from "./paypal/PayPalButton";
 export { Pagination } from "./ui/pagination/Pagination";
 export { Footer } from "./footer/Footer";
 export { ProductMobileSlideShow } from "./product/slide-show/ProductMobileSlideShow";

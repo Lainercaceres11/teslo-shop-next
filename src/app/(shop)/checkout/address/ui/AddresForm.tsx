@@ -3,7 +3,7 @@
 
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
-import { Address, Country } from "@/interfaces";
+import type { Address, Country } from "@/interfaces";
 import { useAddreesStore } from "@/store/address/address-store";
 import { useEffect } from "react";
 import { deleteAddres, setUserAddress } from "@/actions";
@@ -28,6 +28,7 @@ interface Props {
 }
 
 export const AddresForm = ({ countries, userStoredAddress = {} }: Props) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -40,18 +41,16 @@ export const AddresForm = ({ countries, userStoredAddress = {} }: Props) => {
     },
   });
 
-  const router = useRouter();
+  const { data: session } = useSession({ required: true });
 
   const setAdrees = useAddreesStore((state) => state.setAddress);
   const addressInformation = useAddreesStore((state) => state.address);
-
-  const { data: session } = useSession({ required: true });
 
   useEffect(() => {
     if (addressInformation.firstName) {
       reset(addressInformation);
     }
-  }, [addressInformation]);
+  }, []);
 
   const onSubmit = async (data: FormInputs) => {
     const { rememberAddress, ...restAddress } = data;

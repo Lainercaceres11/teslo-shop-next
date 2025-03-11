@@ -2,12 +2,12 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { IoCardOutline } from "react-icons/io5";
-import { getOrdeByUser } from "@/actions";
+import { getAllOrders } from "@/actions";
 import { Title } from "@/components";
-import { OrderAddressFullName } from "./[id]/orderName/orderNameAddres";
+import { OrderAddressFullName } from "../../orders/[id]/orderName/orderNameAddres";
 
 export default async function OrdersPage() {
-  const { ok, order = [] } = await getOrdeByUser();
+  const { ok, order = [] } = await getAllOrders();
 
   if (!ok) {
     redirect("/");
@@ -15,7 +15,7 @@ export default async function OrdersPage() {
 
   return (
     <>
-      <Title title="Orders" />
+      <Title title="Todas las ordenes" />
 
       <div className="mb-10">
         <table className="min-w-full">

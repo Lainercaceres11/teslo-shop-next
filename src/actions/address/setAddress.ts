@@ -24,26 +24,30 @@ const createOrReplaceAddress = async (address: Address, userId: string) => {
   try {
     console.log({ userId });
 
-    const storedAddress = await prisma.userAddress.findFirst({
+    const storedAddress = await prisma.userAddress.findUnique({
       where: { userId },
     });
 
     const addressToSave = {
-      userId: userId,
-      address: address.address,
-      address2: address.address2,
-      countryId: address.country,
-      city: address.city,
+      id: userId,
       firstName: address.firstName,
       lastName: address.lastName,
-      phone: address.phone,
+      address: address.address,
+      address2: address?.address2,
       postalCode: address.postalCode,
+      phone: address.phone,
+      city: address.city,
+      countryId: address.country,
     };
+
+    console.log(addressToSave);
 
     if (!storedAddress) {
       const newAddress = await prisma.userAddress.create({
         data: addressToSave,
       });
+
+      console.log("nueo", newAddress);
 
       return newAddress;
     }
