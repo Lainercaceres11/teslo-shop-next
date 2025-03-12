@@ -15,9 +15,7 @@ import { notFound } from "next/navigation";
 import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata(
@@ -40,7 +38,7 @@ export async function generateMetadata(
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const product = await getProductBySlug(slug);
 
@@ -71,7 +69,6 @@ export default async function ProductPage({ params }: Props) {
 
         <AddToCart product={product} />
 
-        
         <h3 className="text-sm font-bold">Descripción</h3>
         <p className="font-light">{product?.description}</p>
       </div>

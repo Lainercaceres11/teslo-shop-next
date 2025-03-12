@@ -8,12 +8,8 @@ import { Gender } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 interface Props {
-  params: {
-    gender: Category;
-  };
-  searchParams: {
-    page?: string;
-  };
+  params: Promise<{ gender: Category }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 const labels: Record<string, string> = {
@@ -24,9 +20,9 @@ const labels: Record<string, string> = {
 };
 
 export default async function CategoryPage({ params, searchParams }: Props) {
-  const { gender } = params;
-
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+  const { gender } = await params;
+  const pageParam = await searchParams;
+  const page = pageParam.page ? parseInt(pageParam.page) : 1;
 
   const { products, currentPage, totalPage } =
     await getProductPaginationWithImage({ page, gender: gender as Gender });

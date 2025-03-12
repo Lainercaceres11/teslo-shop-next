@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
 import { getOrdeByUser } from "@/actions";
 import { Title } from "@/components";
-import { OrderAddressFullName } from "./[id]/orderName/orderNameAddres";
 
 export default async function OrdersPage() {
   const { ok, order = [] } = await getOrdeByUser();
@@ -57,7 +56,9 @@ export default async function OrdersPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {order.id}
                   </td>
-                  <OrderAddressFullName />
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {order.OrderAddres?.firstName} {order.OrderAddres?.lastName}
+                  </td>
                   {order.isPaid ? (
                     <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                       <IoCardOutline className="text-green-800" />

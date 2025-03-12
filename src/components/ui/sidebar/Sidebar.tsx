@@ -1,6 +1,5 @@
 "use client";
 
-import { logout } from "@/actions/auth/logout";
 import { useUiStore } from "@/store/ui/ui-store";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
@@ -26,8 +25,6 @@ export const Sidebar = () => {
   const isAdmin = session?.user.role === "admin";
 
   const closeMenu = async () => {
-    await logout();
-    closeSidebar();
     redirect("/auth/login");
   };
 

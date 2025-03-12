@@ -2,16 +2,14 @@ import Link from "next/link";
 
 import { Pagination, ProductImage, Title } from "@/components";
 import { getProductPaginationWithImage } from "@/actions";
-import Image from "next/image";
 
 interface Props {
-  searchParams: {
-    page?: string;
-  };
+  searchParams: Promise<{ page?: string }>;
 }
 
 export default async function ProductAdminPage({ searchParams }: Props) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+  const params = await searchParams;
+  const page = params.page ? parseInt(params.page) : 1;
 
   const { products, totalPage } = await getProductPaginationWithImage({ page });
   return (

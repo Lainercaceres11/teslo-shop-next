@@ -6,13 +6,11 @@ import { currencyFormat } from "@/helpers/currencyFormat";
 import OrderAddres from "../../checkout/ui/OrderAddres";
 
 interface Props {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function OrderPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
 
   const { order } = await getOrdeById(id);
 
