@@ -12,6 +12,14 @@ export default async function OrdersPage() {
     redirect("/");
   }
 
+  if (order.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-[80vh]">
+        <p className="text-center font-bold text-3xl">Aun no tienes ordenes</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <Title title="Orders" />

@@ -67,7 +67,7 @@ export const Sidebar = () => {
             </div>
 
             <Link
-              href="/auth/profile"
+              href="/profile"
               onClick={() => closeSidebar()}
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded-md transition-all "
             >
