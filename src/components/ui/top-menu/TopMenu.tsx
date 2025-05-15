@@ -6,7 +6,7 @@ import { useUiStore } from "@/store/ui/ui-store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
+import { IoCartOutline } from "react-icons/io5";
 
 export const TopMenu = () => {
   const openSidebar = useUiStore((state) => state.openSidebar);
